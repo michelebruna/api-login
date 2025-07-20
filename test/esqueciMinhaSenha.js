@@ -2,7 +2,6 @@ const request = require('supertest')
 const { expect } = require('chai')
 require('dotenv').config()
 const { obterToken } = require('../helpers/autenticacao.js')
-const postTransferencias = require('../fixtures/postTransferencias.json')
 
 
 describe('Esqueci minha senha ', () => {
@@ -10,25 +9,33 @@ describe('Esqueci minha senha ', () => {
 
         beforeEach(async () =>{
             
-            // Capturar o token
             token = await obterToken(postLogin)
 
         })
     })
-    
 
-describe('POST /forgout-password', () => {
-    it('Deve retornar sucesso com 201 quando o usuário enviado for válido', async () => {
-        const bodyTransferencias = { ...postTransferencias} //shallow copy funciona apenas quando os dados estão em primeiro nível. Se houver uma lista, por exemplo, não funcionará
+
+describe('POST /forgot-password', () => {
+    it('Deve retornar sucesso com 201 quando o usuário informado for válido', async () => {
+        const bodyEsqueciMinhaSenha = {...postLogin.username}
+
+        const response = await request(process.env.BASE_URL)
+            .post('/forgot-password')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', token)
+            .send(bodyEsqueciMinhaSenha)
+
+            expect(response.status).to.equal(201)
+    })
+
+    /*it('Deve retornar 404 quando não identificar o usuário informado', async () => {
+        const bodyTransferencias = { ...postTransferencias}
 
         const response = await request(process.env.BASE_URL)
             .post('/transferencias')
             .set('Content-Type', 'application/json')
-            .set('Authorization', `Bearer ${token}`) //modelo mais elegante de concatenação
+            .set('Authorization', `Bearer ${token}`)
             .send(bodyTransferencias)
 
-            expect(response.status).to.equal(201)
-
-            console.log(response.body)
-    })
+            expect(response.status).to.equal(404) */
 })
