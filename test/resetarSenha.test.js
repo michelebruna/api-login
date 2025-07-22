@@ -4,6 +4,7 @@ const { expect } = require('chai')
 require('dotenv').config()
 const postLogin = require('../fixtures/postLogin.json')
 const { obterToken } = require('../helpers/autenticacao.js')
+const fs = require('fs')
 
 describe('Resetar Senha', () => {
     let token
@@ -16,11 +17,12 @@ describe('Resetar Senha', () => {
 
     describe('POST /reset-password', () => {
         it('Deve retornar sucesso com 200 quando a senha for redefinida com sucesso', async () => {
+            const novaSenha = 'senha@1234'
             const bodyResetarSenha = 
             {
                 'username' : postLogin.username,
                 'token' : token,
-                'newPassword' : '12345'   
+                'newPassword' : novaSenha   
             } 
 
             const response = await request(process.env.BASE_URL)
@@ -30,7 +32,14 @@ describe('Resetar Senha', () => {
 
                 expect(response.status).to.equal(200)
 
+                postLogin.password = novaSenha
+
+                fs.writeFileSync(
+                    './fixtures/postLogin.json',
+                    JSON.stringify(postLogin, null, 2)
+                  )
         })
+
 
         it('Deve retornar 400 quando o token enviado for inválido', async () => {
             const bodyResetarSenha = 
@@ -48,6 +57,7 @@ describe('Resetar Senha', () => {
                 expect(response.status).to.equal(400)
 
         })
+        
 
         it('Deve retornar 404 quando o usuário informado for inválido', async () => {
             const bodyResetarSenha = 

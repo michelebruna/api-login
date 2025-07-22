@@ -5,6 +5,7 @@ require('dotenv').config()
 const postLogin = require('../fixtures/postLogin.json')
 
 
+
 describe('Login', () => {
     describe('POST /login', () => {
         it('Deve retornar status 200 quando usar credenciais válidas', async () => {
