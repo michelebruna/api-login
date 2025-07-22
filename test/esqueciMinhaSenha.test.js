@@ -1,4 +1,5 @@
 const request = require('supertest')
+const { describe } = require("mocha");
 const { expect } = require('chai')
 require('dotenv').config()
 const { obterToken } = require('../helpers/autenticacao.js')
@@ -19,7 +20,7 @@ describe('POST /forgot-password', () => {
             expect(response.status).to.equal(200)
     })
 
-    it('Deve retornar sucesso com 404 quando o usuário informado for inválido', async () => {
+    it('Deve retornar 404 quando o usuário informado for inválido', async () => {
         const bodyEsqueciMinhaSenha = {'username': 'usuario'}
 
         const response = await request(process.env.BASE_URL)

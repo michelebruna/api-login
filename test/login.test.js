@@ -8,7 +8,7 @@ const postLogin = require('../fixtures/postLogin.json')
 
 describe('Login', () => {
     describe('POST /login', () => {
-        it('Deve retornar status 200 quando usar credenciais válidas', async () => {
+        it('Deve retornar sucesso com 200 quando usar credenciais válidas', async () => {
             const bodyLogin = {...postLogin}
             const response = await request(process.env.BASE_URL)
                 .post('/login')
@@ -19,7 +19,7 @@ describe('Login', () => {
         })
 
 
-        it('Deve retornar status 401 quando usar credenciais inválidas', async () => {
+        it('Deve retornar 401 quando usar credenciais inválidas', async () => {
             const bodyLogin = {
                 'username': 'grupo4',
                 'password': '123456'
