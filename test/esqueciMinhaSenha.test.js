@@ -29,4 +29,5 @@ describe('POST /forgot-password', () => {
             expect(response.status).to.equal(404)
     })
 })
+
 })
