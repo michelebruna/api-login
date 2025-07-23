@@ -6,7 +6,7 @@ const users = [
   {
     id: 1,
     username: 'grupo4',
-    password: 'grupo4@1234',
+  password: 'senha@1234',
     attempts: 0,
     blocked: false,
     resetToken: null,
