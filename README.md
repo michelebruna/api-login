@@ -49,6 +49,7 @@ Realiza o login do usuário.
 
 ### POST /forgot-password
 Solicita a redefinição de senha. Gera um token de redefinição.
+Além disso, este endpoint remove o bloqueio do usuário e zera o contador de tentativas.
 - **Body:**
   ```json
   {
@@ -61,6 +62,7 @@ Solicita a redefinição de senha. Gera um token de redefinição.
 
 ### POST /reset-password
 Redefine a senha do usuário utilizando o token gerado.
+Também desbloqueia o usuário e reinicia a contagem de tentativas.
 - **Body:**
   ```json
   {
@@ -88,6 +90,7 @@ O projeto inclui um usuário padrão para facilitar os testes:
 
 Os testes estão localizados na pasta `test/` e cobrem os principais fluxos da API:
 - Login (`login.test.js`)
+- Desbloqueio de usuário (`desbloqueioUsuario.test.js`)
 - Esqueci minha senha (`esqueciMinhaSenha.test.js`)
 - Resetar senha (`resetarSenha.test.js`)
 
