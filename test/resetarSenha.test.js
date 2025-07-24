@@ -31,6 +31,7 @@ describe('Resetar Senha', () => {
                 .send(bodyResetarSenha)
 
                 expect(response.status).to.equal(200)
+                expect(response.body.message).to.equal('Senha redefinida com sucesso')
 
                 postLogin.password = novaSenha
 
@@ -55,11 +56,12 @@ describe('Resetar Senha', () => {
                 .send(bodyResetarSenha)
 
                 expect(response.status).to.equal(400)
+                expect(response.body.message).to.equal('Token inválido')
 
         })
         
 
-        it('Deve retornar 404 quando o usuário informado for inválido', async () => {
+        it('Deve retornar 404 quando o usuário informado não for encontrado', async () => {
             const bodyResetarSenha = 
             {
                 'username' : 'usuario',
@@ -73,7 +75,7 @@ describe('Resetar Senha', () => {
                 .send(bodyResetarSenha)
 
                 expect(response.status).to.equal(404)
-
+                expect(response.body.message).to.equal('Usuário não encontrado')
         })
     })
 })
