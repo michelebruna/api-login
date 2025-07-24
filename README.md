@@ -2,6 +2,13 @@
 
 Esta é uma API REST para estudo de testes de software, construída em JavaScript com Express. Não utiliza banco de dados: todas as informações são armazenadas em memória.
 
+## Componenstes do Grupo 4
+Amanda Ruiz
+Dionara Paiva
+Felipe Almeida
+Matheus Ferreira
+Michele Silva
+
 ## Requisitos
 - Node.js (versão 14 ou superior)
 - npm
