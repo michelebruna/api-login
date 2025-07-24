@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "mocha ./test/**/*.test.js --timeout=200000"
+    "test": "mocha test/login.test.js test/desbloqueioUsuario.test.js test/esqueciMinhaSenha.test.js test/resetarSenha.test.js --timeout=200000"
   },
   "keywords": [],
   "author": "",
