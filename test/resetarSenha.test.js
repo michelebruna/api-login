@@ -17,7 +17,7 @@ describe('Resetar Senha', () => {
 
     describe('POST /reset-password', () => {
         it('Deve retornar sucesso com 200 quando a senha for redefinida com sucesso', async () => {
-            const novaSenha = 'senha@1234'
+            const novaSenha = 'senha@12345'
             const bodyResetarSenha = 
             {
                 'username' : postLogin.username,
